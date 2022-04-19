@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController {
         title = "Settings"
         tabBarItem = .init(title: nil, image: Icons.settings, selectedImage: nil)
         
-        view.backgroundColor = .white
+        view.backgroundColor = Colors.background
     }
     
     required init?(coder: NSCoder) {

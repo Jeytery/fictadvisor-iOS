@@ -46,6 +46,7 @@ class SearchViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         title = "teachers".localized
         tabBarItem = .init(title: nil, image: Icons.loopa, selectedImage: nil)
+        view.backgroundColor = Colors.background
     }
     
     required init?(coder: NSCoder) {
@@ -62,6 +63,7 @@ class SearchViewController: UIViewController {
         collectionView.dataSource = self
         
         collectionView.register(CollectionCell<SearchResultView>.self, forCellWithReuseIdentifier: "cell")
+        collectionView.backgroundColor = .clear
     }
     
 }
@@ -78,13 +80,33 @@ extension SearchViewController: UISearchResultsUpdating {
 
 
 extension SearchViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
         return 10
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = CollectionCell<SearchResultView>()
-        cell.baseView.configure(title: "123", icon: Icons.avatar)
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "cell",
+            for: indexPath
+        ) as! CollectionCell<SearchResultView>
+        
+        cell.baseView.configure(title: "Лихоузова Анастасия Алексеевна", icon: Icons.avatar)
+        cell.baseView.backgroundColor = Colors.primaryInterface
+        cell.baseView.layer.cornerRadius = 20
         return cell
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        return .init(width: view.frame.width - 40, height: 120)
     }
 }

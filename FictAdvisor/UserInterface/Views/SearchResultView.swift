@@ -23,6 +23,10 @@ class SearchResultView: UIView {
             $0.right.equalToSuperview().offset(-20)
         }
         
+        iconView.contentMode = .scaleAspectFit
+        iconView.tintColor = Colors.monophrome
+        
+        
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints() {
             $0.centerY.equalToSuperview()
@@ -31,6 +35,7 @@ class SearchResultView: UIView {
         }
         
         titleLabel.font = .systemFont(ofSize: 20, weight: .semibold)
+        titleLabel.numberOfLines = 0
         
     }
     

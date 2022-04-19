@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
         title = "Home"
         tabBarItem = .init(title: nil, image: Icons.home, selectedImage: nil)
         
-        view.backgroundColor = .white
+        view.backgroundColor = Colors.background
     }
     
     required init?(coder: NSCoder) {

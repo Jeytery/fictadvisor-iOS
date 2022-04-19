@@ -10,12 +10,14 @@ import UIKit
 
 class Colors {
     
-    static let primary: UIColor = .red
-    static let secondary = ""
+    static let primary: UIColor = Color(hex: "#478cfc")
     
-    static let background = ""
-    static let primaryInterface = ""
-    static let secondaryInterface = ""
+    static let background = Color("Background")
+    
+    static let primaryInterface = Color("PrimaryInterface")
+    static let secondaryInterface = Color("SecondaryInterface")
+    
+    static let monophrome = Color("Monophrome")
 }
 
 //MARK: - colors infrastructure
