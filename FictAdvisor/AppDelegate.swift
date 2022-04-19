@@ -17,8 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         
-        let vc = UIViewController()
-        vc.view.backgroundColor = .cyan
+        let vc = TabViewController()
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = vc

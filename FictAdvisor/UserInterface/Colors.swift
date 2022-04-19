@@ -10,7 +10,7 @@ import UIKit
 
 class Colors {
     
-    static let primary = ""
+    static let primary: UIColor = .red
     static let secondary = ""
     
     static let background = ""
