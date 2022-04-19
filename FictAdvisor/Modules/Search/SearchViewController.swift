@@ -1,5 +1,5 @@
 //
-//  TeachersViewController.swift
+//  SearchViewController.swift
 //  FictAdvisor
 //
 //  Created by Jeytery on 18.04.2022.
@@ -7,19 +7,23 @@
 
 import UIKit
 
-func TeachersModule() -> TeachersViewController {
-    let vc = TeachersViewController()
-    vc.presenter = TeachersPresenter()
+func SearchModule() -> SearchViewController {
+    let vc = SearchViewController()
+    vc.presenter = SearchPresenter()
     return vc
 }
 
-protocol TeacherViewControllerInput: AnyObject {
+protocol SearchViewControllerInput: AnyObject {
     func displayTeachers(_ teachers: Teachers)
 }
 
-class TeachersViewController: UIViewController {
+struct SearchResult {
     
-    var presenter: TeachersPresenterInput!
+}
+
+class SearchViewController: UIViewController {
+    
+    var presenter: SearchPresenterInput!
     
     private let collectionView = CollectionView(title: "no_results".localized)
     
@@ -53,11 +57,16 @@ class TeachersViewController: UIViewController {
         collectionView.snp.makeConstraints() {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.register(CollectionCell<SearchResultView>.self, forCellWithReuseIdentifier: "cell")
     }
     
 }
 
-extension TeachersViewController: UISearchResultsUpdating {
+extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let title = searchController.searchBar.text ?? ""
         API.shared.search(title) {
@@ -67,3 +76,15 @@ extension TeachersViewController: UISearchResultsUpdating {
     }
 }
 
+
+extension SearchViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = CollectionCell<SearchResultView>()
+        cell.baseView.configure(title: "123", icon: Icons.avatar)
+        return cell
+    }
+}

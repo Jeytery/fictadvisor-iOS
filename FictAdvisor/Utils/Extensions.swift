@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+extension String {
+    var localized: String {
+        return NSLocalizedString(
+            self,
+            tableName: "Localize",
+            bundle: .main,
+            value: self,
+            comment: self
+        )
+    }
+}

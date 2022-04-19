@@ -9,8 +9,6 @@ import UIKit
 
 class TabViewController: UITabBarController {
         
-    private let icons = [Icons.avatar, Icons.settings, Icons.settings]
-    
     private lazy var tabControllers = [
         NavigationController(
             rootViewController: HomeViewController(),
@@ -18,7 +16,7 @@ class TabViewController: UITabBarController {
             withBigTitle: true
         ),
         NavigationController(
-            rootViewController: TeachersModule(),
+            rootViewController: SearchModule(),
             buttonSide: .dontShow,
             withBigTitle: true
         ),
@@ -32,11 +30,6 @@ class TabViewController: UITabBarController {
     init() {
         super.init(nibName: nil, bundle: nil)
         configureViewControllers()
-        //configureIcons()
-        tabBar.items?.forEach() {
-            _ in
-            //$0.imageInsets = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0);
-        }
     }
      
     required init?(coder: NSCoder) {
@@ -48,21 +41,6 @@ class TabViewController: UITabBarController {
 extension TabViewController {
     private func configureViewControllers() {
         setViewControllers(tabControllers, animated: false)
-    }
-
-    private func configureIcons() {
-        guard let items = tabBar.items else { return }
-        for i in 0..<items.count {
-            let item = items[i]
-            item.title = ""
-            item.image = icons[i]
-            
-        }
-        
-        tabBar.items?.forEach() {
-            
-            $0.imageInsets = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0);
-        }
     }
 }
 
